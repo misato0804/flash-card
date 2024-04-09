@@ -19,6 +19,51 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui({
+    layout: {
+      fontSize: {
+        tiny: "0.75rem", // text-tiny
+        small: "0.875rem", // text-small
+        medium: "1rem", // text-medium
+        large: "1.125rem", // text-large
+      },
+    },
+    themes: {
+      light: {
+        colors: {
+          background: "#FDFDFD",
+          primary: {
+            DEFAULT: "#5590C7",
+          },
+          secondary: {
+            DEFAULT: "#FF6B6B",
+          },
+          content1: {
+            DEFAULT: "#97A97C"
+          },
+          content2: {
+            DEFAULT: "#3A3A3A"
+          }
+        },
+      },
+      dark: {
+        colors: {
+          background: "#121212",
+          primary: {
+            DEFAULT: "#436F8A",
+          },
+          secondary: {
+            DEFAULT: "#E57373",
+          },
+          content1: {
+            DEFAULT: "#789E8E"
+          },
+          content2: {
+            DEFAULT: "#E0E0E0"
+          }
+        },
+      },
+    }
+  })],
 };
 export default config;
