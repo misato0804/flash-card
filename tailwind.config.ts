@@ -50,7 +50,7 @@ const config: Config = {
         colors: {
           background: "#121212",
           primary: {
-            DEFAULT: "#436F8A",
+            DEFAULT: "#E0E0E0",
           },
           secondary: {
             DEFAULT: "#E57373",
@@ -59,7 +59,7 @@ const config: Config = {
             DEFAULT: "#789E8E"
           },
           content2: {
-            DEFAULT: "#E0E0E0"
+            DEFAULT: "#436F8A",
           }
         },
       },
