@@ -4,9 +4,11 @@ import "./globals.css";
 import {UiProviders} from "./providers/ui-providers";
 import {ThemeProvider as NextThemesProvider} from "next-themes";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
+import LayoutSpacer from "@/components/wrapper/LayoutSpacer";
 
 const roboto = Roboto({
-    weight: '500',
+    weight: ['100', '300', '400', '500', '700', '900'],
     subsets: ["latin"]
 });
 
@@ -23,7 +25,10 @@ export default function RootLayout({children}: Readonly<{
         <UiProviders>
             <NextThemesProvider attribute="class" defaultTheme="dark">
                 <Header/>
-                {children}
+                <LayoutSpacer>
+                    {children}
+                    <Footer/>
+                </LayoutSpacer>
             </NextThemesProvider>
         </UiProviders>
         </body>

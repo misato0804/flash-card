@@ -33,6 +33,7 @@ const Header = () => {
 
     return (
         <Navbar
+            maxWidth='xl'
             shouldHideOnScroll
             classNames={{
                 item: [
@@ -53,7 +54,7 @@ const Header = () => {
             <NavbarBrand>
                 <Link href='/'>Logo</Link>
             </NavbarBrand>
-            <NavbarContent className="hidden sm:flex gap-16" justify="center">
+            <NavbarContent className="hidden sm:flex gap-24" justify="center">
                 {
                     navBarItems.map(item => (
                         <NavbarItem key={item.title} isActive={item.link === pathname}>
