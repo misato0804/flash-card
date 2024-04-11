@@ -1,7 +1,7 @@
 export default function Home() {
 
   return (
-    <div>
+    <div className='py-[800px]'>
       Home page
     </div>
   );
