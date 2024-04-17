@@ -24,11 +24,7 @@ export default function RootLayout({children}: Readonly<{
         <body className={roboto.className}>
         <UiProviders>
             <NextThemesProvider attribute="class" defaultTheme="dark">
-                <Header/>
-                <LayoutSpacer>
-                    {children}
-                    <Footer/>
-                </LayoutSpacer>
+                { children }
             </NextThemesProvider>
         </UiProviders>
         </body>
