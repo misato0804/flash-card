@@ -11,10 +11,10 @@ const AuthWrapper = ({children}: AuthWrapperProps) => {
 
     return (
         <div className='w-screen h-screen px-8 py-4 xl:px-12 xl:py-8 flex justify-center'>
-            <div className='w-full h-full'>
+            <div className='w-full h-[80%]'>
                 <h1 className='text-4xl'>Logo</h1>
                 <div className='flex justify-center'>
-                    <h1 className='text-2xl font-extrabold mt-8 mb-24'>Snap Study</h1>
+                    <h1 className='text-4xl font-extrabold mt-8'>Snap Study</h1>
                 </div>
                 <AuthContentWrapper>
                     { children }
