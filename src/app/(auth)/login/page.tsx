@@ -1,10 +1,9 @@
 import React from 'react';
+import LoginPageComponent from "@/components/page/login";
 
 const Login = () => {
     return (
-        <div>
-            Login
-        </div>
+        <LoginPageComponent/>
     );
 };
 
