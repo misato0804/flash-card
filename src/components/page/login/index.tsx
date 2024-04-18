@@ -14,6 +14,8 @@ const LoginPageComponent = () => {
                 label={'email'}
                 placeHolder={'email'}
                 autoComplete='email'
+                value={'email'}
+                onChange={() => {}}
             />
             <Spacer y={ 8 } />
             <TextInput
@@ -21,11 +23,15 @@ const LoginPageComponent = () => {
                 label={'password'}
                 placeHolder={'password'}
                 autoComplete='new-password'
+                value={'email'}
+                onChange={() => {}}
             />
             <Spacer y={ 8 } />
             <RegularButton
                 text={'Login'}
                 color='content1'
+                disabled={false}
+                onClick={() => console.log('click')}
             />
         </AuthWrapper>
     );
