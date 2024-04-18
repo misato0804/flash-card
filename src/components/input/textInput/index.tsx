@@ -2,7 +2,7 @@ import React from 'react';
 import {Input} from "@nextui-org/react";
 import {TextInputProps} from "@/components/input/textInput/type";
 
-const TextInput = ({type, variant, label, placeHolder } : TextInputProps) => {
+const TextInput = ({type, variant, label, placeHolder, autoComplete, onChange, value} : TextInputProps) => {
 
 
     return (
@@ -12,6 +12,9 @@ const TextInput = ({type, variant, label, placeHolder } : TextInputProps) => {
                 variant={variant ? variant : 'underlined'}
                 label={ label}
                 placeholder={placeHolder}
+                autoComplete={autoComplete}
+                value={value}
+                onChange={onChange}
             />
         </div>
     );

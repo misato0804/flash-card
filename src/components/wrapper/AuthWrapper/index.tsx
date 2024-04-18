@@ -1,4 +1,3 @@
-'use client'
 import {AuthWrapperProps} from "@/components/wrapper/AuthWrapper/type";
 import AuthContentWrapper from "@/components/wrapper/AuthWrapper/AuthContentWrapper";
 

@@ -6,12 +6,13 @@ import {RegularButtonProps} from "@/components/button/regularButton/type";
  * Todo:
  *  Adding onClick
  */
-const RegularButton = ({ text, color }: RegularButtonProps) => {
+const RegularButton = ({ text, color, disabled, onClick}: RegularButtonProps) => {
     return (
         <Button
             fullWidth
             color={"secondary"}
-            onClick={() => console.log('clicked!')}
+            onClick={onClick}
+            disabled={disabled}
         >
             { text }
         </Button>
