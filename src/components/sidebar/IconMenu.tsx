@@ -9,7 +9,7 @@ const IconMenu = () => {
                 <ul className=''>
                     {navLinks.map((linkItem, index) => (
                         <li key={linkItem.title} className={`block ${index % 2 !== 0 ? "my-6" : ""}`}>
-                            <Link href={`/${linkItem.link}`}> {React.createElement(linkItem.icon) }</Link>
+                            <Link href={`/${linkItem.link}`}> {linkItem.Icon ? React.createElement(linkItem.Icon) : null }</Link>
                         </li>
                     ))}
                 </ul>

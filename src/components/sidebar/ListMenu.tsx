@@ -4,7 +4,7 @@ import {navLinks} from "@/components/sidebar/nav-links";
 import Link from "next/link";
 
 const ListMenu = () => {
-    const [openBar, setOpenBar] = useState()
+    const [openBar, setOpenBar] = useState<boolean>(false)
     return (
         <aside
             className={`md:block hidden h-screen fixed z-30 inset-y-0 left-0 w-64 transform ${openBar ? "translate-x-0" : "-translate-x-48"} transition-transform duration-300 ease-in-out`}>

@@ -8,21 +8,21 @@ export const navLinks : NavLinkType[] = [
     {
         title: 'Decks',
         link: 'decks',
-        icon: DeckIcon
+        Icon: DeckIcon
     },
     {
         title: 'Browse',
         link: 'brows',
-        icon: ListIcon
+        Icon: ListIcon
     },
     {
         title: 'Status',
         link: 'status',
-        icon: ChartIcon
+        Icon: ChartIcon
     },
     {
         title: 'Profile',
         link: 'profile',
-        icon: UserIcon
+        Icon: UserIcon
     }
 ]

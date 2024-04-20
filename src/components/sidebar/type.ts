@@ -1,5 +1,6 @@
+import { FunctionComponent } from 'react';
 export type NavLinkType = {
     title: string,
     link: string,
-    icon: React.ReactNode
+    Icon: FunctionComponent<any>
 }
