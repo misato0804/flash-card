@@ -3,7 +3,7 @@ import React from 'react';
 const UserDashBoard = () => {
     return (
         <div>
-            user dash board
+            user dash boards
         </div>
     );
 };
