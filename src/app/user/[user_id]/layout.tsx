@@ -11,14 +11,14 @@ const DashBoardLayout = ({children}: Readonly<{
     const {isOpen} = useIsSidebarOpen()
 
     return (
-        <div className='flex '>
-            <div className='fixed top-4 right-8 flex gap-4'>
+        <div className='flex'>
+            <div className='fixed top-4 right-4 flex gap-4'>
                 <ThemeSwitcher/>
                 <AvatarDropDown name='Misato' user_id={'3'}/>
             </div>
-            <div className='flex'>
+            <div className='w-full'>
                 <SideBar/>
-                <div className={`bg-sky-100 mt-6 flex transition-all ease-in-out duration-300 ${isOpen ? "md:ml-64 ml-16" : "ml-16"}`}>
+                <div className={`flex justify-center mt-6 transition-all ease-in-out duration-300 ${isOpen ? "md:ml-64 ml-12 md:w-[70%] px-4 md:px-0" : "ml-12 px-4"}`}>
                     {children}
                 </div>
             </div>
