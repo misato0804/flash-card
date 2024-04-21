@@ -1,9 +1,12 @@
 import React from 'react';
 
 const UserDashBoard = () => {
+
+    // decks list
+
     return (
-        <div>
-            user dash boards
+        <div className=''>
+            <h1>Hello</h1>
         </div>
     );
 };
