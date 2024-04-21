@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Hamburger from "@/components/elements/icons/Hamburger";
 import {navLinks} from "@/components/sidebar/nav-links";
 import Link from "next/link";
-import {useIsSidebarOpen} from "@/store/isSIdebarOpen/isSidebarOpen";
+import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
 
 const ListMenu = () => {
     const { isOpen, toggleSidebar } = useIsSidebarOpen()
