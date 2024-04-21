@@ -3,7 +3,9 @@ import React, {useState} from 'react';
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
 import SideBar from "@/components/sidebar";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
-import {useIsSidebarOpen} from "@/store/isSIdebarOpen/isSidebarOpen";
+import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
+import CreateCardButton from "@/components/button/createCardButton";
+import CreateDeckModal from "@/components/modal/createDeckModal";
 
 const DashBoardLayout = ({children}: Readonly<{
     children: React.ReactNode;
@@ -22,6 +24,8 @@ const DashBoardLayout = ({children}: Readonly<{
                     {children}
                 </div>
             </div>
+            <CreateCardButton/>
+            <CreateDeckModal/>
         </div>
     );
 };
