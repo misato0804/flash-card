@@ -14,7 +14,7 @@ import {
 import useSWR from "swr";
 import Link from "next/link";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (...args: [string]) => fetch(...args).then((res) => res.json());
 
 export default function App() {
     const [page, setPage] = useState(1);
@@ -41,7 +41,6 @@ export default function App() {
                             isCompact
                             showControls
                             showShadow
-                            color="background"
                             page={page}
                             total={pages}
                             onChange={(page) => setPage(page)}
@@ -61,7 +60,7 @@ export default function App() {
                 loadingContent={<Spinner/>}
                 loadingState={loadingState}
             >
-                {(item) => (
+                {(item: any) => (
                     <TableRow key={item?.name}>
                         {(columnKey) => (
                             columnKey === 'name' ?
