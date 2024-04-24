@@ -3,8 +3,20 @@ import AuthWrapper from "@/components/wrapper/AuthWrapper";
 import {Spacer} from "@nextui-org/react";
 import TextInput from "@/components/input/textInput";
 import RegularButton from "@/components/button/regularButton";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "@/app/_lib/firebase/config";
+import {useState} from "react";
 
 const LoginPageComponent = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState()
+
+    const handleLogin = async () => {
+
+    }
+
     return (
         <AuthWrapper>
             <h3 className='text-xl font-bold text-center'>Welcome back!</h3>
@@ -14,8 +26,8 @@ const LoginPageComponent = () => {
                 label={'email'}
                 placeHolder={'email'}
                 autoComplete='email'
-                value={'email'}
-                onChange={() => {}}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
             />
             <Spacer y={ 8 } />
             <TextInput
@@ -23,8 +35,8 @@ const LoginPageComponent = () => {
                 label={'password'}
                 placeHolder={'password'}
                 autoComplete='new-password'
-                value={'email'}
-                onChange={() => {}}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
             />
             <Spacer y={ 8 } />
             <RegularButton

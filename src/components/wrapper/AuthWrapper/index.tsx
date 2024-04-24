@@ -16,7 +16,9 @@ const AuthWrapper = ({children}: AuthWrapperProps) => {
                     <h1 className='text-4xl font-extrabold mt-8'>Snap Study</h1>
                 </div>
                 <AuthContentWrapper>
-                    { children }
+                    <form>
+                        {children}
+                    </form>
                 </AuthContentWrapper>
             </div>
         </div>
