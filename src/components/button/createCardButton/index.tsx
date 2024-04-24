@@ -1,11 +1,11 @@
 import React from 'react';
 import {PlusIcon} from "@/components/elements/icons/PlusIcon";
 import {Button, useDisclosure} from "@nextui-org/react";
-import {useIsCreateModalOpen} from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
 import {Tooltip} from "@nextui-org/tooltip";
+import {useIsCreateCardModalOpen} from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
 
 const CreateCardButton = () => {
-    const { onOpen } = useIsCreateModalOpen()
+    const { onOpen } = useIsCreateCardModalOpen()
 
     const handleOpen = () => {
         onOpen();

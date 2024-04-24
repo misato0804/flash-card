@@ -5,7 +5,7 @@ import SideBar from "@/components/sidebar";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
 import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
-import CreateDeckModal from "@/components/modal/createDeckModal";
+import CreateCardModal from "@/components/modal/createCardModal";
 
 const DashBoardLayout = ({children}: Readonly<{
     children: React.ReactNode;
@@ -25,7 +25,7 @@ const DashBoardLayout = ({children}: Readonly<{
                 </div>
             </div>
             <CreateCardButton/>
-            <CreateDeckModal/>
+            <CreateCardModal/>
         </div>
     );
 };
