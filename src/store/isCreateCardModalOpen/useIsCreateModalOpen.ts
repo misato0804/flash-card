@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import {IsCreateModalOpenType} from "@/store/isCreateCardModalOpen/type";
+import {IsCreateCardModalOpenType} from "@/store/isCreateCardModalOpen/type";
 
-export const useIsCreateModalOpen = create<IsCreateModalOpenType>((set) => ({
+export const useIsCreateCardModalOpen = create<IsCreateCardModalOpenType>((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }),

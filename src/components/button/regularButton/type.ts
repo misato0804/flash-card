@@ -2,7 +2,7 @@ import {MouseEventHandler} from "react";
 
 export type RegularButtonProps = {
     text: string,
-    color: 'primary' | 'secondary' | 'content1' | 'content2',
+    color: any,
     disabled? : boolean,
     onClick:MouseEventHandler<HTMLButtonElement>;
 }

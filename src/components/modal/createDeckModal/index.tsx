@@ -1,12 +1,13 @@
 'use client'
 import React from 'react';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
-import {useIsCreateModalOpen} from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, } from "@nextui-org/react";
+import {useIsCreateDeckModalOpen} from "@/store/isCreateDeckModalOpen/useIsCreateDeckModalOpen";
+
 
 const CreateDeckModal = () => {
 
-    const { isOpen, onOpen, onClose, toggle} = useIsCreateModalOpen()
-
+    const { isOpen, onOpen, onClose, toggle} = useIsCreateDeckModalOpen()
+    console.log('gekki')
     return (
         <>
             <Modal

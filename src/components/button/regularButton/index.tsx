@@ -10,7 +10,7 @@ const RegularButton = ({ text, color, disabled, onClick}: RegularButtonProps) =>
     return (
         <Button
             fullWidth
-            color={"secondary"}
+            color={color}
             onClick={onClick}
             disabled={disabled}
         >
