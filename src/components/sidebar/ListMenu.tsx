@@ -5,14 +5,16 @@ import Link from "next/link";
 import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
 
 const ListMenu = () => {
-    const { isOpen, toggleSidebar } = useIsSidebarOpen()
+    const {isOpen, toggleSidebar} = useIsSidebarOpen()
     return (
         <aside
             className={`md:block hidden h-screen fixed z-30 inset-y-0 left-0 w-64 transform ${isOpen ? "translate-x-0" : "-translate-x-48"} transition-transform duration-300 ease-in-out`}>
             <div className='flex justify-between pr-[22px] my-6 items-top'>
                 <ul className='ml-4'>
                     <li>
-                        <h3 className={`text-2xl font-bold mb-24`}>Snap study</h3>
+                        <Link href='/'>
+                            <h3 className={`text-2xl font-bold mb-24`}>Snap study</h3>
+                        </Link>
                     </li>
                     {navLinks.map((linkItem) =>
                         (

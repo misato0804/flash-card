@@ -6,6 +6,8 @@ import RegularButton from "@/components/button/regularButton";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "@/app/_lib/firebase/config";
 import {useState} from "react";
+import useAuthStore from "@/store/userState/userAuthStore";
+import {useRouter} from "next/navigation";
 
 const LoginPageComponent = () => {
 
@@ -13,9 +15,24 @@ const LoginPageComponent = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState()
 
+    const {setUser} = useAuthStore()
+
+    const router = useRouter()
+
     const handleLogin = async () => {
-        const res = await signInWithEmailAndPassword(auth, email, password);
-        console.log(res)
+        try {
+            const res = await signInWithEmailAndPassword(auth, email, password);
+            if(res.user) {
+                const { uid, email } = res.user;
+                setUser({
+                    uid,
+                    email: email!
+                })
+                router.push(`/user/${uid}/decks`)
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
