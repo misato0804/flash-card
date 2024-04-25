@@ -26,7 +26,7 @@ const LoginPageComponent = () => {
                 const { uid, email } = res.user;
                 setUser({
                     uid,
-                    email
+                    email: email!
                 })
                 router.push(`/user/${uid}/decks`)
             }
