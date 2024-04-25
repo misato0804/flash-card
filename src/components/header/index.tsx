@@ -1,17 +1,18 @@
 'use client'
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
-import {userLogin} from "@/store/user";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
 import AuthButtons from "@/components/header/AuthButtons";
 import {User} from "@/type/User";
 import {user1} from "@/dammy/User";
 import { usePathname } from 'next/navigation'
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
+import userAuthStore from "@/store/userState/userAuthStore";
 
 const Header = () => {
 
-    const user = userLogin
     const data: User = user1
+    const {user} = userAuthStore()
+    console.log(user)
 
     const navBarItems = [
         {
