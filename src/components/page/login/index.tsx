@@ -14,7 +14,8 @@ const LoginPageComponent = () => {
     const [error, setError] = useState()
 
     const handleLogin = async () => {
-
+        const res = await signInWithEmailAndPassword(auth, email, password);
+        console.log(res)
     }
 
     return (
@@ -43,7 +44,7 @@ const LoginPageComponent = () => {
                 text={'Login'}
                 color='content1'
                 disabled={false}
-                onClick={() => console.log('click')}
+                onClick={handleLogin}
             />
         </AuthWrapper>
     );
