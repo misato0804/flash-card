@@ -11,8 +11,7 @@ import userAuthStore from "@/store/userState/userAuthStore";
 const Header = () => {
 
     const data: User = user1
-    const {user} = userAuthStore()
-    console.log(user)
+    const { user } = userAuthStore()
 
     const navBarItems = [
         {
