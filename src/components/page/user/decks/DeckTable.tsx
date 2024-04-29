@@ -13,11 +13,15 @@ import {
 } from "@nextui-org/react";
 import useSWR from "swr";
 import Link from "next/link";
+import useAuthStore from "@/store/userState/userAuthStore";
 
 const fetcher = (...args: [string]) => fetch(...args).then((res) => res.json());
 
 export default function App() {
     const [page, setPage] = useState(1);
+
+    const {user} = useAuthStore()
+    console.log(user)
 
     const {data, isLoading} = useSWR(`https://swapi.py4e.com/api/people?page=${page}`, fetcher, {
         keepPreviousData: true,

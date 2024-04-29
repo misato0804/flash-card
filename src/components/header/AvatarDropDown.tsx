@@ -3,7 +3,7 @@ import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar} from "@ne
 import { User } from '@/type/User'
 import Link from "next/link";
 
-const AvatarDropDown = ({image, user_id, name}: User) => {
+const AvatarDropDown = ({image, user_id, name}: any) => {
     return (
         <Dropdown placement="bottom-end" >
             <DropdownTrigger>

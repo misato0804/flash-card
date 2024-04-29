@@ -10,7 +10,7 @@ import userAuthStore from "@/store/userState/userAuthStore";
 
 const Header = () => {
 
-    const data: User = user1
+    const data = user1
     const { user } = userAuthStore()
 
     const navBarItems = [
@@ -69,9 +69,9 @@ const Header = () => {
                 <ThemeSwitcher/>
                 {user ?
                     <AvatarDropDown
-                        name={data.name}
-                        user_id={data.user_id}
-                        image={data.image!}
+                        name={data!.name}
+                        user_id={data!.user_id}
+                        image={data?.image}
                     /> :
                     <AuthButtons/>
                 }
