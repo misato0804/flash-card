@@ -16,23 +16,13 @@ const LoginPageComponent = () => {
 
     const [error, setError] = useState()
 
-    const { setUser } = useAuthStore()
+    const { setUser, user } = useAuthStore()
 
     const router = useRouter()
 
     const handleLogin = async () => {
         try {
             const url = '/api/auth/login'
-            // const res = await signInWithEmailAndPassword(auth, email, password);
-            // if(res.user) {
-            //     const { uid, email } = res.user;
-            //     console.log(res)
-            //     setUser({
-            //         uid,
-            //         email: email!
-            //     })
-            //     router.push(`/user/${uid}/decks`)
-
             const res = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -40,8 +30,10 @@ const LoginPageComponent = () => {
                 },
                 body: JSON.stringify({ email, password })
             })
-            if(res.ok) {
-                console.log(res)
+            if (res.ok) {
+                const data = await res.json()
+                setUser(data.user)
+                router.push(`/user/${user?.uid}/decks`)
             }
         } catch (e) {
             console.log(e)
