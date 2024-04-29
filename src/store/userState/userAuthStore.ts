@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import {UserState, User} from "@/store/userState/type";
+import {UserState} from "@/store/userState/type";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '@/app/_lib/firebase/config';
 

@@ -1,11 +1,9 @@
-import firebase from "firebase/compat/app"
+import { User } from 'firebase/auth';
 
 export type AuthUser = {
     email: string,
     uid: string
 } | undefined | undefined
-
-export type User = firebase.User
 
 export type UserState = {
     user: User | null
