@@ -1,16 +1,25 @@
 'use client'
-import React, {useState} from 'react';
+import React, {use, useEffect, useState} from 'react';
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
 import SideBar from "@/components/sidebar";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
 import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
 import CreateCardModal from "@/components/modal/createCardModal";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/app/_lib/firebase/config';
+import { useRouter } from 'next/navigation';
 
 const DashBoardLayout = ({children}: Readonly<{
     children: React.ReactNode;
 }>) => {
     const {isOpen} = useIsSidebarOpen()
+    
+    const [userLoading, setUserLoading] = useState<boolean>(false)
+    const { user } = useAuthState(auth)
+    const router = useRouter()
+
+    console.log("user",user)
 
     return (
         <div className='flex'>

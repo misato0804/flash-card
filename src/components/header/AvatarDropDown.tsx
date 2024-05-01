@@ -2,8 +2,19 @@
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar} from "@nextui-org/react";
 import { User } from '@/type/User'
 import Link from "next/link";
+import { auth } from "@/app/_lib/firebase/config";
+import { signOut } from "firebase/auth";
 
 const AvatarDropDown = ({image, user_id, name}: any) => {
+
+    const hadnleSignOut = async() => {
+        try {
+            await signOut(auth)
+        }catch(e) {
+            console.log(e)
+        }
+    }
+
     return (
         <Dropdown placement="bottom-end" >
             <DropdownTrigger>
@@ -29,7 +40,7 @@ const AvatarDropDown = ({image, user_id, name}: any) => {
                     <Link href={`/user/${user_id}/analytics`}>Analytics</Link>
                 </DropdownItem>
                 <DropdownItem key="logout" color="danger">
-                    Log Out
+                    <h5 onClick={hadnleSignOut}>Log Out</h5>
                 </DropdownItem>
             </DropdownMenu>
         </Dropdown>

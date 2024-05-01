@@ -16,28 +16,28 @@ const LoginPageComponent = () => {
 
     const [error, setError] = useState()
 
-    const { setUser, user } = useAuthStore()
+
 
     const router = useRouter()
 
     const handleLogin = async () => {
-        try {
-            const url = '/api/auth/login'
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            })
-            if (res.ok) {
-                const data = await res.json()
-                setUser(data.user)
-                router.push(`/user/${user?.uid}/decks`)
-            }
-        } catch (e) {
-            console.log(e)
-        }
+       // try {
+        //     const url = '/api/auth/login'
+        //     const res = await fetch(url, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ email, password })
+        //     })
+        //     if (res.ok) {
+        //         const data = await res.json()
+        //         setUser(data.user)
+        //         router.push(`/user/${user?.uid}/decks`)
+        //     }
+        // } catch (e) {
+        //     console.log(e)
+        // } 
     }
 
     return (
