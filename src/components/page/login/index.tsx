@@ -3,9 +3,7 @@ import AuthWrapper from "@/components/wrapper/AuthWrapper";
 import { Spacer } from "@nextui-org/react";
 import TextInput from "@/components/input/textInput";
 import RegularButton from "@/components/button/regularButton";
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from "@/app/_lib/firebase/config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuthStore from "@/store/userState/userAuthStore";
 import { useRouter } from "next/navigation";
 
@@ -14,30 +12,22 @@ const LoginPageComponent = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const [error, setError] = useState()
+    const [error, setError] = useState(false)
 
-    const { setUser, user } = useAuthStore()
+    const { signIn, authUser, loading } = useAuthStore()
 
     const router = useRouter()
 
-    const handleLogin = async () => {
-        try {
-            const url = '/api/auth/login'
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            })
-            if (res.ok) {
-                const data = await res.json()
-                setUser(data.user)
-                router.push(`/user/${user?.uid}/decks`)
-            }
-        } catch (e) {
-            console.log(e)
+    useEffect(() => {
+        if(authUser) {
+            router.push(`/user/${authUser.uid}/decks`)
+        } else if (authUser === null && !loading) {
+            console.log('login faiked')
         }
+    }, [authUser, loading, router])
+
+    const handleLogin = async () => {
+       await signIn(email, password)
     }
 
     return (

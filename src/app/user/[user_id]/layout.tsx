@@ -1,16 +1,21 @@
 'use client'
-import React, {useState} from 'react';
+import React, {use, useEffect, useState} from 'react';
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
 import SideBar from "@/components/sidebar";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
 import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
 import CreateCardModal from "@/components/modal/createCardModal";
+import { useRouter } from 'next/navigation'
 
 const DashBoardLayout = ({children}: Readonly<{
     children: React.ReactNode;
 }>) => {
     const {isOpen} = useIsSidebarOpen()
+    
+    const [userLoading, setUserLoading] = useState<boolean>(false)
+
+    const router = useRouter()
 
     return (
         <div className='flex'>
