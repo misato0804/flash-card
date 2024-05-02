@@ -7,7 +7,7 @@ import firebase from "firebase/compat/app";
 const useAuthStore = create<UseAuthStoreState>((set) => ({
   authUser: null,
 
-  loading: true,
+  loading: false,
 
   setUser: (user: User | null) => set({ authUser: user }),
 
@@ -36,10 +36,14 @@ const useAuthStore = create<UseAuthStoreState>((set) => ({
             })
             if (res.ok) {
                 const data = await res.json()
-                set({ authUser: data.user, loading: false });
+                set((state) => ({ authUser: data.user, loading: false }));
+            } else {
+                set((state) => ({ authUser: null, loading: false }));
+                throw new Error('Failed to log in: ' + res.status);
             }
         } catch (e) {
             console.log(e)
+            set((state) => ({ authUser: null, loading: false }));
         } 
   },
 
@@ -67,6 +71,7 @@ const useAuthStore = create<UseAuthStoreState>((set) => ({
     try {
         await firebase.auth().signOut();
         set({ authUser: null, loading: false });
+
       } catch (error) {
         set({ loading: false });
         throw error;

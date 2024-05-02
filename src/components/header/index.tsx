@@ -6,12 +6,17 @@ import {User} from "@/type/User";
 import {user1} from "@/dammy/User";
 import { usePathname } from 'next/navigation'
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
-import userAuthStore from "@/store/userState/userAuthStore";
+import useAuthStore from "@/store/userState/userAuthStore";
+import { useCurrentUser } from "@/hooks/useFirebaseAuth";
 
 const Header = () => {
 
     const data = user1
-    const { user } = userAuthStore()
+    const authUser = useAuthStore((set) => set.authUser)
+
+    const user = useCurrentUser();
+
+    console.log('user',user)
 
     const navBarItems = [
         {
@@ -67,7 +72,7 @@ const Header = () => {
             </NavbarContent>
             <NavbarContent justify="end">
                 <ThemeSwitcher/>
-                {user ?
+                {authUser ?
                     <AvatarDropDown
                         name={data!.name}
                         user_id={data!.user_id}

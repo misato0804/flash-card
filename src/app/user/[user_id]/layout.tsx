@@ -6,9 +6,7 @@ import AvatarDropDown from "@/components/header/AvatarDropDown";
 import {useIsSidebarOpen} from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
 import CreateCardModal from "@/components/modal/createCardModal";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/app/_lib/firebase/config';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 
 const DashBoardLayout = ({children}: Readonly<{
     children: React.ReactNode;
@@ -16,10 +14,8 @@ const DashBoardLayout = ({children}: Readonly<{
     const {isOpen} = useIsSidebarOpen()
     
     const [userLoading, setUserLoading] = useState<boolean>(false)
-    const { user } = useAuthState(auth)
-    const router = useRouter()
 
-    console.log("user",user)
+    const router = useRouter()
 
     return (
         <div className='flex'>

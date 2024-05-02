@@ -4,12 +4,17 @@ import { User } from '@/type/User'
 import Link from "next/link";
 import { auth } from "@/app/_lib/firebase/config";
 import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const AvatarDropDown = ({image, user_id, name}: any) => {
+
+    const router = useRouter()
 
     const hadnleSignOut = async() => {
         try {
             await signOut(auth)
+            router.push('/')
+
         }catch(e) {
             console.log(e)
         }

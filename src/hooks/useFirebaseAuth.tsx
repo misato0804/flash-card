@@ -1,45 +1,19 @@
-// import firebase from "firebase/compat/app";
-// import { useEffect, useState } from "react";
+import { auth } from '@/app/_lib/firebase/config';
+import { User } from '@/store/userState/type'
+import { onAuthStateChanged } from 'firebase/auth';
+import { useState, useEffect } from 'react';
 
-// export default function useFirebaseAuth() {
-//   const [authUser, setAuthUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
+export const useCurrentUser = () => {
+  const [user, setUser] = useState<User | null>(null);
 
-//   const authStateChanged = async (authState) => {
-//     if (!authState) {
-//       setAuthUser(null)
-//       setLoading(false)
-//     }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setUser(user);
+    });
+    return unsubscribe;
 
-//     setLoading(true)
-//     setAuthUser(authState)
-//     setLoading(false)
-//   }
+  }, []);
 
-//   const clear = () => {
-//     setAuthUser(null);
-//     setLoading(true);
-//   };
+  return user
 
-//   const signInWithEmailAndPassword = (email: string, password: string) =>
-//     firebase.auth().signInWithEmailAndPassword(email, password);
-
-//   const createUserWithEmailAndPassword = (email: string, password: string) =>
-//     firebase.auth().createUserWithEmailAndPassword(email, password);
-
-//   const signOut = async() =>
-//     firebase.auth().signOut().then(clear);
-
-//   useEffect(() => {
-//     const unsbscribe = firebase.auth().onAuthStateChanged(authStateChanged)
-//     return () => unsbscribe();
-//   }, [])
-
-//   return {
-//     authUser,
-//     loading,
-//     signInWithEmailAndPassword,
-//     createUserWithEmailAndPassword,
-//     signOut
-//   }
-// }
+}
