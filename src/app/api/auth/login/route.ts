@@ -6,6 +6,8 @@ export async function POST(req: Request) {
   const data = await req.json();
   const { email, password } = data;
 
+  
+
   if (!email || !password) {
     return Response.json({
       status: 404,
@@ -24,7 +26,9 @@ export async function POST(req: Request) {
         }
       }))
 
-      res.cookies.set('authToken', firebaseRes.user.accessToken, {
+      const token = await firebaseRes.user.getIdToken()
+
+      res.cookies.set('authToken', token, {
         httpOnly: true,
         path: '/',
         maxAge: 3600,
