@@ -13,10 +13,16 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+}>) { 
+    return (
+        <html lang="en" suppressHydrationWarning>
+            <body className={roboto.className}>
+                <UiProviders>
+                    <NextThemesProvider attribute="class" defaultTheme="dark">
+                        {children}
+                    </NextThemesProvider>
+                </UiProviders>
+            </body>
+        </html>
+    );
 }
