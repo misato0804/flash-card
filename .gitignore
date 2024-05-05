@@ -36,3 +36,5 @@ yarn-error.log*
 next-env.d.ts
 
 .idea
+
+/Users/misatotanno/Desktop/projects/flash-cards/src/app/_lib/firebase/flash-card-59f1f-firebase-adminsdk-5jui5-21c89598f0.json
