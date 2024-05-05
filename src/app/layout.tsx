@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cookie, Roboto } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import "./globals.css";
 import { UiProviders } from "@/app/providers/ui-providers";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
