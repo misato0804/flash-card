@@ -1,7 +1,8 @@
 import admin from 'firebase-admin'
 
 if (!admin.apps.length) {
-  const serviceAccount = require('../firebase/firebase_server.json');
+  const serviceAccountJson = process.env.FIREBASE_SERVER_JSON_DATA;
+  const serviceAccount = JSON.parse(serviceAccountJson!)
 
   admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
