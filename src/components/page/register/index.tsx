@@ -46,7 +46,6 @@ const RegisterPageComponent = () => {
 
     return (
         <AuthWrapper>
-            <form>
                 <h3 className='text-xl font-bold text-center'>
                     Nice to meet you!
                 </h3>
@@ -86,7 +85,6 @@ const RegisterPageComponent = () => {
                     disabled={!passwordMatch}
                     onClick={handleSignUp}
                 />
-            </form>
         </AuthWrapper>
     );
 };

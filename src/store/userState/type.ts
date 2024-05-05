@@ -8,6 +8,7 @@ export type UseAuthStoreState = {
     loading: boolean;
     setUser: (user: User | null) => void;
     clearUser: () => void;
+    updateUser: (id: string) => void
     initialize: () => () => void;
     signIn: (email: string, password: string) => Promise<void>;
     signUp: (email: string, password: string) => Promise<void>;
