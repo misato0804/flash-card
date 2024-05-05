@@ -6,8 +6,6 @@ export async function POST(req: Request) {
   const data = await req.json();
   const { email, password } = data;
 
-  
-
   if (!email || !password) {
     return Response.json({
       status: 404,

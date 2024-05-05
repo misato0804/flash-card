@@ -21,7 +21,6 @@ export default function DeckTable() {
     const [page, setPage] = useState(1);
 
     const {authUser, loading} = useAuthStore()
-    console.log('auth user',loading)
 
     const {data, isLoading} = useSWR(`https://swapi.py4e.com/api/people?page=${page}`, fetcher, {
         keepPreviousData: true,

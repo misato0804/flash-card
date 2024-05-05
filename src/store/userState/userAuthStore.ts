@@ -66,6 +66,28 @@ const useAuthStore = create<UseAuthStoreState>((set) => ({
     }
   },
 
+  updateUser: async(id: string) => {
+    set({ loading: true });
+    const url = `/api/user/${id}`
+    const res = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    if(res.ok) {
+        const data = await res.json()
+        const newUser = {
+            uid: data.user.uid,
+            email: data.user.email
+        }
+        set({ authUser: newUser, loading: false });
+    } else {
+        console.log('errro')
+    }
+},
+
+
   signOut: async() => {
     set({ loading: true });
     try {

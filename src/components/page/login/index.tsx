@@ -22,7 +22,7 @@ const LoginPageComponent = () => {
         if(authUser) {
             router.push(`/user/${authUser.uid}/decks`)
         } else if (authUser === null && !loading) {
-            console.log('login faiked')
+            console.log('login failed')
         }
     }, [authUser, loading, router])
 
