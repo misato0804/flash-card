@@ -36,3 +36,5 @@ yarn-error.log*
 next-env.d.ts
 
 .idea
+
+/Users/misatotanno/Desktop/projects/flash-cards/src/app/_lib/firebase/firebase_server.json

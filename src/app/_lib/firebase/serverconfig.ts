@@ -1,7 +1,7 @@
 import admin from 'firebase-admin'
 
 if (!admin.apps.length) {
-  const serviceAccount = require('../firebase/flash-card-59f1f-firebase-adminsdk-5jui5-21c89598f0.json');
+  const serviceAccount = require('../firebase/firebase_server.json');
 
   admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
