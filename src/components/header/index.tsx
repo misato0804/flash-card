@@ -7,16 +7,37 @@ import {user1} from "@/dammy/User";
 import { usePathname } from 'next/navigation'
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
 import useAuthStore from "@/store/userState/userAuthStore";
-import { useCurrentUser } from "@/hooks/useFirebaseAuth";
+import { useEffect } from "react";
 
 const Header = () => {
 
     const data = user1
-    const authUser = useAuthStore((set) => set.authUser)
+    const { authUser, updateUser,loading, setUser} = useAuthStore()
 
-    const user = useCurrentUser();
 
-    console.log('user',user)
+    const url = '/api/user'
+    const getUser = async (token: string) => {
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ authToken: token })
+        })
+
+        if( res.ok) {
+            const data = await res.json()
+            setUser(data.user)
+        }
+    }
+
+    useEffect(() => {
+        var authCookie = document.cookie.split('=')[1];
+        console.log(authCookie)
+        if(authCookie) {
+            getUser(authCookie)
+        }
+    }, [])
 
     const navBarItems = [
         {

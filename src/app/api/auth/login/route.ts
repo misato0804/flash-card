@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       const token = await firebaseRes.user.getIdToken()
 
       res.cookies.set('authToken', token, {
-        httpOnly: true,
+        httpOnly: false,
         path: '/',
         maxAge: 3600,
         secure: process.env.NODE_ENV === 'production'
