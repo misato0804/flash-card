@@ -14,7 +14,6 @@ const Header = () => {
     const data = user1
     const { authUser, updateUser,loading, setUser} = useAuthStore()
 
-
     const url = '/api/user'
     const getUser = async (token: string) => {
         const res = await fetch(url, {
@@ -95,8 +94,8 @@ const Header = () => {
                 <ThemeSwitcher/>
                 {authUser ?
                     <AvatarDropDown
-                        name={data!.name}
-                        user_id={data!.user_id}
+                        name={authUser.email}
+                        user_id={authUser.uid}
                         image={data?.image}
                     /> :
                     <AuthButtons/>
