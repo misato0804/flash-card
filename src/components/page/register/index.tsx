@@ -81,7 +81,7 @@ const RegisterPageComponent = () => {
                 <Spacer y={8}/>
                 <RegularButton
                     text={'Register'}
-                    color='content1'
+                    color='secondary'
                     disabled={!passwordMatch}
                     onClick={handleSignUp}
                 />
