@@ -54,7 +54,7 @@ const LoginPageComponent = () => {
             <Spacer y={8} />
             <RegularButton
                 text={'Login'}
-                color='content1'
+                color='secondary'
                 disabled={false}
                 onClick={handleLogin}
             />
