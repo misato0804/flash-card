@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       res.cookies.set('authToken', token, {
         httpOnly: false,
         path: '/',
-        maxAge: 3600,
+        maxAge: 864000,
         secure: process.env.NODE_ENV === 'production'
       })
 
