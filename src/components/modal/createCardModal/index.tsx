@@ -3,12 +3,58 @@ import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-
 import {useIsCreateCardModalOpen} from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
 import TextAreaInput from "@/components/input/textAreaInput";
 import RegularButton from "@/components/button/regularButton";
-import {animals} from "@/dammy/SelectList";
 import SelectInput from "@/components/input/selectInput";
+import useDeckStore from "@/store/userDeckStore";
+import { ChangeEventHandler, useState } from "react";
+import useCardStore from "@/store/useCardStore";
+import { MemorizedStatus } from "@/type/CardStatus";
 
 const CreateCardModal = () => {
 
     const {isOpen, onClose} = useIsCreateCardModalOpen()
+    const { decks } = useDeckStore()
+    const { createCard, cardLoading } = useCardStore()
+
+    const [front, setFront] = useState('')
+    const [back, setBack] = useState('')
+
+    const [deckId, setDeckId] = useState('')
+
+    const deckOption = decks.map(deck => ({
+        label: deck.title,
+        value: deck.id
+    }))
+
+    const deckIdHandler: ChangeEventHandler<HTMLSelectElement> = (e) => {
+        setDeckId(e.target.value)
+    }
+
+    const frontCardHandler: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+        setFront(e.target.value)
+    }
+    
+    const backCardHandler: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+        setBack(e.target.value)
+    }
+
+    const createCardHandler = () => {
+
+        createCard({
+            deckId,
+            front,
+            back,
+            status: MemorizedStatus.NEW,
+            repetitions: 0,
+            reviewDate: new Date(),
+            interval: 0,
+            easinessFactor: 2.5
+        })
+
+        setFront('')
+        setBack('')
+        setDeckId('')
+        onClose()
+    }
 
     return (
         <Modal
@@ -22,23 +68,23 @@ const CreateCardModal = () => {
                         <ModalHeader className="flex flex-col gap-1">Create New Card</ModalHeader>
                         <ModalBody>
                             <TextAreaInput
-                                label={'Input you want to remember'}
-                                placeholder={'Input'}
-                                value='Hello'
-                                onChange={() => {}}
+                                label={'Front'}
+                                placeholder={''}
+                                value={front}
+                                onChange={frontCardHandler}
                             />
                             <TextAreaInput
-                                label={'Input you want to remember'}
-                                placeholder={'Input'}
-                                value='Hello'
-                                onChange={() => {}}
+                                label={'Back'}
+                                placeholder={''}
+                                value={back}
+                                onChange={backCardHandler}
                             />
-                            <SelectInput label={'choose deck'} options={animals} value={'animal'} placeholder={'choose deck'} onChange={() => {}}/>
+                            <SelectInput label={'choose deck'} options={deckOption} value={'decks'} placeholder={'choose deck'} onChange={deckIdHandler}/>
 
                         </ModalBody>
                         <ModalFooter>
-                            <RegularButton text='Save' color={'secondary'} onClick={onClose}/>
                             <RegularButton text='Close' color={'primary'} onClick={onClose}/>
+                            <RegularButton text='Save' color={'secondary'} onClick={createCardHandler}/>
                         </ModalFooter>
                     </>
                 )}

@@ -1,6 +1,6 @@
 import {ChangeEventHandler} from "react";
 
-type SelectOption = {
+export type SelectOption = {
     label: string,
     value: string
 }

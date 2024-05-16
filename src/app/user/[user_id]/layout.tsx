@@ -7,6 +7,7 @@ import { useIsSidebarOpen } from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
 import useAuthStore from '@/store/userState';
 import CreateDeckModal from '@/components/modal/createDeckModal';
+import CreateCardModal from '@/components/modal/createCardModal';
 
 const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user_id : string}}) => {
     const { isOpen } = useIsSidebarOpen()
@@ -36,6 +37,7 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
                 </div>
                 <CreateCardButton />
                 <CreateDeckModal uid={authUser.uid} />
+                <CreateCardModal/>
             </div>
     );
 
