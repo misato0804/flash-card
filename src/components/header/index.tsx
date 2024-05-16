@@ -6,7 +6,7 @@ import {User} from "@/type/User";
 import {user1} from "@/dammy/User";
 import { usePathname } from 'next/navigation'
 import {ThemeSwitcher} from "@/components/switcher/ThemeSwitcher";
-import useAuthStore from "@/store/userState/userAuthStore";
+import useAuthStore from "@/store/userState";
 import { useEffect } from "react";
 
 const Header = () => {
@@ -32,9 +32,10 @@ const Header = () => {
 
     useEffect(() => {
         var authCookie = document.cookie.split('=')[1];
-        console.log(authCookie)
         if(authCookie) {
             getUser(authCookie)
+        } else {
+            return
         }
     }, [])
 

@@ -6,7 +6,7 @@ import AvatarDropDown from "@/components/header/AvatarDropDown";
 import { useIsSidebarOpen } from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
 import CreateCardModal from "@/components/modal/createCardModal";
-import useAuthStore from '@/store/userState/userAuthStore';
+import useAuthStore from '@/store/userState';
 
 const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user_id : string}}) => {
     const { isOpen } = useIsSidebarOpen()
@@ -26,7 +26,7 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
             <div className='flex'>
                 <div className='fixed top-4 right-4 flex gap-4'>
                     <ThemeSwitcher />
-                    <AvatarDropDown name='Misato' user_id={'3'} />
+                    <AvatarDropDown name={authUser.email} user_id={authUser.uid} />
                 </div>
                 <div className='w-full'>
                     <SideBar />
