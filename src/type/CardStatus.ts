@@ -1,6 +1,6 @@
-export enum CardStatus {
-    New = 'New',
-    Familiar = 'Familiar',
-    Confident = 'Confident',
-    Mastered = 'Mastered'
+export type CardStatus = {
+    New : number,
+    Familiar : number,
+    Confident : number,
+    Mastered : number
 }

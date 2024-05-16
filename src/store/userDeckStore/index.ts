@@ -1,6 +1,7 @@
 import { Deck } from "@/type/Deck";
 import { UseDeckStoreState } from "./type";
 import { create } from "zustand";
+import { CardStatus } from "@/type/CardStatus";
 
 const useDeckStore = create<UseDeckStoreState>((set) => ({
   decks: [],
@@ -35,5 +36,34 @@ const useDeckStore = create<UseDeckStoreState>((set) => ({
   deleteDeck: async () => {},
 
   updateDeck: async (deckId: string) => {},
+
+  createDeck: async (uid: string, title: string) => {
+    set({ deckLoading: true });
+    try {
+      const url = "/api/decks/deck";
+      const cardStatus: CardStatus = {
+        New: 0,
+        Familiar: 0,
+        Confident: 0,
+        Mastered: 0
+      }
+
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ uid, title, cardStatus }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        set(() => ({ deckLoading: false }));
+      } else {
+        throw new Error();
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  },
 }));
 export default useDeckStore;

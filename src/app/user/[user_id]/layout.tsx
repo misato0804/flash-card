@@ -1,12 +1,12 @@
 'use client'
-import React, { ReactNode, use, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect } from 'react';
 import { ThemeSwitcher } from "@/components/switcher/ThemeSwitcher";
 import SideBar from "@/components/sidebar";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
 import { useIsSidebarOpen } from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
-import CreateCardModal from "@/components/modal/createCardModal";
 import useAuthStore from '@/store/userState';
+import CreateDeckModal from '@/components/modal/createDeckModal';
 
 const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user_id : string}}) => {
     const { isOpen } = useIsSidebarOpen()
@@ -35,7 +35,7 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
                     </div>
                 </div>
                 <CreateCardButton />
-                <CreateCardModal />
+                <CreateDeckModal uid={authUser.uid} />
             </div>
     );
 

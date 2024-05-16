@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 // CREATE
 export async function POST(req: Request) {
   const data = await req.json();
-  const { title, uid } = data;
+  const { title, uid, cardStatus } = data;
 
   if (!title || !uid) {
     return Response.json({
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
   const collectionREf = collection(database, "decks");
 
   try {
-    const docRef = await addDoc(collectionREf, { title, uid });
+    const docRef = await addDoc(collectionREf, { title, uid, cardStatus });
     if (docRef) {
       const res = new NextResponse(
         JSON.stringify({
