@@ -1,13 +1,25 @@
 'use client'
-import React from 'react';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, } from "@nextui-org/react";
-import {useIsCreateDeckModalOpen} from "@/store/isCreateDeckModalOpen/useIsCreateDeckModalOpen";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, } from "@nextui-org/react";
+import { useIsCreateDeckModalOpen } from "@/store/isCreateDeckModalOpen/useIsCreateDeckModalOpen";
+import RegularButton from "@/components/button/regularButton";
+import useDeckStore from "@/store/userDeckStore";
+import { useState } from "react";
+import TextInput from "@/components/input/textInput";
 
+const CreateDeckModal = ({ uid }: { uid: string}) => {
 
-const CreateDeckModal = () => {
+    const [deckTitle, setDeckTitile] = useState<string>('')
 
-    const { isOpen, onOpen, onClose, toggle} = useIsCreateDeckModalOpen()
-    console.log('gekki')
+    const { isOpen, onClose } = useIsCreateDeckModalOpen()
+    const { createDeck, getAllDecks } = useDeckStore()
+    
+    const onClickHandler = () => {
+        createDeck(uid, deckTitle)
+        setDeckTitile('')
+        onClose()
+        getAllDecks(uid)
+    }
+
     return (
         <>
             <Modal
@@ -18,17 +30,19 @@ const CreateDeckModal = () => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Create New Deck</ModalHeader>
                             <ModalBody>
-                                <h1>Hello</h1>
+                                <TextInput
+                                    type={"text"}
+                                    label={"New Deck Title"}
+                                    placeHolder={"new deck"}
+                                    onChange={(e) => setDeckTitile(e.target.value)}
+                                    value={deckTitle}
+                                />
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={onClose}>
-                                    Action
-                                </Button>
+                                <RegularButton text='Save' color={'secondary'} onClick={onClickHandler} />
+                                <RegularButton text='Close' color={'primary'} onClick={onClose} />
                             </ModalFooter>
                         </>
                     )}

@@ -4,7 +4,7 @@ import { Spacer } from "@nextui-org/react";
 import TextInput from "@/components/input/textInput";
 import RegularButton from "@/components/button/regularButton";
 import { useEffect, useState } from "react";
-import useAuthStore from "@/store/userState/userAuthStore";
+import useAuthStore from "@/store/userState";
 import { useRouter } from "next/navigation";
 
 const LoginPageComponent = () => {
@@ -18,16 +18,13 @@ const LoginPageComponent = () => {
 
     const router = useRouter()
 
-    useEffect(() => {
-        if(authUser) {
+    const handleLogin = async () => {
+        await signIn(email, password)
+        if (authUser) {
             router.push(`/user/${authUser.uid}/decks`)
         } else if (authUser === null && !loading) {
             console.log('login failed')
         }
-    }, [authUser, loading, router])
-
-    const handleLogin = async () => {
-       await signIn(email, password)
     }
 
     return (

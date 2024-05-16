@@ -1,12 +1,12 @@
 'use client'
-import React, { ReactNode, use, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect } from 'react';
 import { ThemeSwitcher } from "@/components/switcher/ThemeSwitcher";
 import SideBar from "@/components/sidebar";
 import AvatarDropDown from "@/components/header/AvatarDropDown";
 import { useIsSidebarOpen } from "@/store/isSIdebarOpen/useIsSidebarOpen";
 import CreateCardButton from "@/components/button/createCardButton";
-import CreateCardModal from "@/components/modal/createCardModal";
-import useAuthStore from '@/store/userState/userAuthStore';
+import useAuthStore from '@/store/userState';
+import CreateDeckModal from '@/components/modal/createDeckModal';
 
 const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user_id : string}}) => {
     const { isOpen } = useIsSidebarOpen()
@@ -26,7 +26,7 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
             <div className='flex'>
                 <div className='fixed top-4 right-4 flex gap-4'>
                     <ThemeSwitcher />
-                    <AvatarDropDown name='Misato' user_id={'3'} />
+                    <AvatarDropDown name={authUser.email} user_id={authUser.uid} />
                 </div>
                 <div className='w-full'>
                     <SideBar />
@@ -35,7 +35,7 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
                     </div>
                 </div>
                 <CreateCardButton />
-                <CreateCardModal />
+                <CreateDeckModal uid={authUser.uid} />
             </div>
     );
 

@@ -2,17 +2,17 @@ import React from 'react';
 import {PlusIcon} from "@/components/elements/icons/PlusIcon";
 import {Button, useDisclosure} from "@nextui-org/react";
 import {Tooltip} from "@nextui-org/tooltip";
-import {useIsCreateCardModalOpen} from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
+import { useIsCreateDeckModalOpen } from '@/store/isCreateDeckModalOpen/useIsCreateDeckModalOpen';
 
 const CreateCardButton = () => {
-    const { onOpen } = useIsCreateCardModalOpen()
+    const { onOpen } = useIsCreateDeckModalOpen()
 
     const handleOpen = () => {
         onOpen();
     }
     return (
         <div className="flex gap-4 items-center fixed bottom-12 right-4">
-            <Tooltip content="Create New Card" placement="left-start">
+            <Tooltip content="Create New Deck" placement="left-start">
             <Button
                 isIconOnly
                 color="secondary"
