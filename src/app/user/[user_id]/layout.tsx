@@ -37,7 +37,7 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
                 </div>
                 <CreateCardButton />
                 <CreateDeckModal uid={authUser.uid} />
-                <CreateCardModal/>
+                <CreateCardModal uid={authUser.uid}/>
             </div>
     );
 

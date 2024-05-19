@@ -9,10 +9,10 @@ import { ChangeEventHandler, useState } from "react";
 import useCardStore from "@/store/useCardStore";
 import { MemorizedStatus } from "@/type/CardStatus";
 
-const CreateCardModal = () => {
+const CreateCardModal = ({ uid }: { uid: string}) => {
 
     const {isOpen, onClose} = useIsCreateCardModalOpen()
-    const { decks } = useDeckStore()
+    const { decks, getAllDecks } = useDeckStore()
     const { createCard, cardLoading } = useCardStore()
 
     const [front, setFront] = useState('')
@@ -39,6 +39,10 @@ const CreateCardModal = () => {
 
     const createCardHandler = () => {
 
+        if ( front.length === 0 || back.length === 0 ) {
+            return
+        }
+
         createCard({
             deckId,
             front,
@@ -53,7 +57,8 @@ const CreateCardModal = () => {
         setFront('')
         setBack('')
         setDeckId('')
-        onClose()
+        !cardLoading && onClose()
+        getAllDecks(uid)
     }
 
     return (
