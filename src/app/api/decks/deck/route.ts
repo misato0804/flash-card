@@ -14,10 +14,10 @@ export async function POST(req: Request) {
     });
   }
 
-  const collectionREf = collection(database, "decks");
+  const collectionRef = collection(database, "decks");
 
   try {
-    const docRef = await addDoc(collectionREf, { title, uid, cardStatus });
+    const docRef = await addDoc(collectionRef, { title, uid, cardStatus });
     if (docRef) {
       const res = new NextResponse(
         JSON.stringify({
@@ -50,4 +50,3 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {}

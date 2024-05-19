@@ -10,6 +10,29 @@ const useDeckStore = create<UseDeckStoreState>((set) => ({
 
   deckLoading: false,
 
+  getDeck: async (deck_id: string): Promise<Deck | undefined> => {
+    set({ deckLoading: true });
+    try {
+      const url = `/api/decks/${deck_id}`
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+
+      if(res.ok) {
+        const data = await res.json();
+        set({ deckLoading: false });
+        return data.deck
+      }
+    } catch(e) {
+        console.log(e)
+        set({ deckLoading: false });
+        return
+    }
+  },
+
   getAllDecks: async (uid: string) => {
     set({ deckLoading: true });
     try {
