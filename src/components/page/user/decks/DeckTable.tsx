@@ -1,4 +1,6 @@
 'use client'
+import RegularButton from "@/components/button/regularButton";
+import { useIsCreateCardModalOpen } from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
 import { Deck } from "@/type/Deck";
 type DeckTableProps = {
     decks: Deck[],
@@ -8,6 +10,7 @@ type DeckTableProps = {
 export default function DeckTable({ decks, loading }: DeckTableProps) {
 
     const shadow = 'shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]'
+    const {onOpen} = useIsCreateCardModalOpen()
 
     if (loading) {
         return (
@@ -75,6 +78,7 @@ export default function DeckTable({ decks, loading }: DeckTableProps) {
                         </ul>
                     ))
             }
+            <RegularButton text="Add new card" color="secondary" className="mt-4" onClick={onOpen}/>
         </div>
     );
 }
