@@ -4,3 +4,10 @@ export type CardStatus = {
     Confident : number,
     Mastered : number
 }
+
+export enum MemorizedStatus {
+    NEW = "NEW",
+    FAMILIAR = "FAMILIAR",
+    CONFIDENT = "CONFIDENT",
+    MASTERED = "MASTERED",
+}

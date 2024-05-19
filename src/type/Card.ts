@@ -1,11 +1,11 @@
-import { CardStatus } from "./CardStatus"
+import { CardStatus, MemorizedStatus } from "./CardStatus"
 
 export type Card = {
-  id: string,
+  id?: string,
   deckId: string,
   front: string,
   back: string,
-  status: CardStatus
+  status: MemorizedStatus
   repetitions: number,
   reviewDate: Date,
   interval: number,
