@@ -5,7 +5,7 @@ import TextAreaInput from "@/components/input/textAreaInput";
 import RegularButton from "@/components/button/regularButton";
 import SelectInput from "@/components/input/selectInput";
 import useDeckStore from "@/store/userDeckStore";
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useState } from "react";
 import useCardStore from "@/store/useCardStore";
 import { MemorizedStatus } from "@/type/CardStatus";
 
@@ -29,21 +29,21 @@ const CreateCardModal = ({ uid }: { uid: string}) => {
         setDeckId(e.target.value)
     }
 
-    const frontCardHandler: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    const frontCardHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setFront(e.target.value)
     }
     
-    const backCardHandler: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    const backCardHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setBack(e.target.value)
     }
 
-    const createCardHandler = () => {
+    const createCardHandler =async () => {
 
         if ( front.length === 0 || back.length === 0 ) {
             return
         }
 
-        createCard({
+        await createCard({
             deckId,
             front,
             back,
@@ -57,8 +57,8 @@ const CreateCardModal = ({ uid }: { uid: string}) => {
         setFront('')
         setBack('')
         setDeckId('')
+        await getAllDecks(uid)
         !cardLoading && onClose()
-        getAllDecks(uid)
     }
 
     return (

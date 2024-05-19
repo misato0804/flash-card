@@ -4,5 +4,5 @@ export type TextAreaProps = {
     label: string,
     placeholder: string,
     value: string,
-    onChange: ChangeEventHandler<HTMLTextAreaElement> 
+    onChange: ChangeEventHandler<HTMLInputElement> 
 }
