@@ -2,15 +2,18 @@
 import RegularButton from "@/components/button/regularButton";
 import { useIsCreateCardModalOpen } from "@/store/isCreateCardModalOpen/useIsCreateModalOpen";
 import { Deck } from "@/type/Deck";
+import Link from "next/link";
+
 type DeckTableProps = {
     decks: Deck[],
-    loading: boolean
+    loading: boolean,
+    uid: string
 }
 
-export default function DeckTable({ decks, loading }: DeckTableProps) {
+export default function DeckTable({ decks, loading, uid }: DeckTableProps) {
 
     const shadow = 'shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]'
-    const {onOpen} = useIsCreateCardModalOpen()
+    const { onOpen } = useIsCreateCardModalOpen()
 
     if (loading) {
         return (
@@ -59,26 +62,28 @@ export default function DeckTable({ decks, loading }: DeckTableProps) {
             {
                 decks.length === 0 ? <h3 className="text-center font-bold text-primary opacity-20 text-xl py-12">Let&apos;s Create Your First Deck</h3>
                     : decks.map((deck) => (
-                        <ul key={deck.id} className="grid grid-cols-5 text-center hover:cursor-pointer mb-4 min-w-[480px]">
-                            <li className="font-bold text-start">
-                                {deck.title}
-                            </li>
-                            <li className="text-sky-500">
-                                {deck.cardStatus?.New}
-                            </li>
-                            <li className="text-green-500">
-                                {deck.cardStatus?.Familiar}
-                            </li>
-                            <li className="text-yellow-500">
-                                {deck.cardStatus?.Confident}
-                            </li>
-                            <li className="text-red-600">
-                                {deck.cardStatus?.Mastered}
-                            </li>
-                        </ul>
+                        <Link key={deck.id} href={`/user/${uid}/decks/${deck.id}`}>
+                            <ul key={deck.id} className="grid grid-cols-5 text-center hover:cursor-pointer mb-4 min-w-[480px]">
+                                <li className="font-bold text-start">
+                                    {deck.title}
+                                </li>
+                                <li className="text-sky-500">
+                                    {deck.cardStatus?.New}
+                                </li>
+                                <li className="text-green-500">
+                                    {deck.cardStatus?.Familiar}
+                                </li>
+                                <li className="text-yellow-500">
+                                    {deck.cardStatus?.Confident}
+                                </li>
+                                <li className="text-red-600">
+                                    {deck.cardStatus?.Mastered}
+                                </li>
+                            </ul>
+                        </Link>
                     ))
             }
-            <RegularButton text="Add new card" color="secondary" className="mt-4" onClick={onOpen}/>
+            <RegularButton text="Add new card" color="secondary" className="mt-4" onClick={onOpen} />
         </div>
     );
 }

@@ -1,14 +1,8 @@
-import React from 'react';
+import DeckComponent from '@/components/page/user/decks/deck';
 
-const Deck = () => {
-
-
-
-
+const Deck = ({ params }: { params: { deck: string } }) => {
     return (
-        <div>
-            
-        </div>
+        <DeckComponent deck_id={ params.deck } />
     );
 };
 

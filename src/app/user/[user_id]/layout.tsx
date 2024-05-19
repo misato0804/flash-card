@@ -9,21 +9,21 @@ import useAuthStore from '@/store/userState';
 import CreateDeckModal from '@/components/modal/createDeckModal';
 import CreateCardModal from '@/components/modal/createCardModal';
 
-const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user_id : string}}) => {
+const DashBoardLayout = ({ children, params }: { children: ReactNode, params: { user_id: string } }) => {
     const { isOpen } = useIsSidebarOpen()
-    const { authUser, updateUser,loading} = useAuthStore()
+    const { authUser, updateUser, loading } = useAuthStore()
 
     const memoizedUpdateUser = useCallback(
         () => updateUser(params.user_id),
         [params.user_id, updateUser]
     );
-    
+
     useEffect(() => {
         memoizedUpdateUser();
-    }, [memoizedUpdateUser]); 
+    }, [memoizedUpdateUser]);
 
-    if(authUser)
-    return (
+    if (authUser)
+        return (
             <div className='flex'>
                 <div className='fixed top-4 right-4 flex gap-4'>
                     <ThemeSwitcher />
@@ -32,14 +32,16 @@ const DashBoardLayout = ({children, params}: {children: ReactNode, params: {user
                 <div className='w-full'>
                     <SideBar />
                     <div className={`flex justify-center mt-6 transition-all ease-in-out duration-300 ${isOpen ? "md:ml-64 ml-12 md:w-[70%] px-4 md:px-0" : "ml-12 px-4"}`}>
-                        {children}
+                        <div className='w-full mt-24 max-w-4xl max-h-[500px]'>
+                            {children}
+                        </div>
                     </div>
                 </div>
                 <CreateCardButton />
                 <CreateDeckModal uid={authUser.uid} />
-                <CreateCardModal uid={authUser.uid}/>
+                <CreateCardModal uid={authUser.uid} />
             </div>
-    );
+        );
 
     else if (!authUser || loading) {
         return <>Loading</>

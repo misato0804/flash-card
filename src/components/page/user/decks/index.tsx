@@ -20,11 +20,13 @@ const UserDecksComponent = () => {
 
     const memoizedDecks = useMemo(() => decks, [decks]);
 
-    return (
-        <div className='w-full mt-24 max-w-4xl max-h-[500px]'>
-            <DeckTable decks={memoizedDecks} loading={deckLoading} />
-        </div>
-    );
+    if (authUser) {
+        return (
+            <DeckTable decks={memoizedDecks} loading={deckLoading} uid={authUser?.uid} />
+        );
+    } else {
+        return <div>Loading</div>
+    };
 };
 
 export default UserDecksComponent;
