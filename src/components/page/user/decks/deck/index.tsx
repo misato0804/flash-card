@@ -1,14 +1,20 @@
 'use client'
 import RegularButton from "@/components/button/regularButton"
+import QuizPopupModal from "@/components/modal/quizPopupModal"
+import { useQuizModalOpen } from "@/store/isQuizModalOpen"
+import useCardStore from "@/store/useCardStore"
 import useDeckStore from "@/store/userDeckStore"
+import { Card } from "@/type/Card"
 import { Deck } from "@/type/Deck"
-import { useCallback, useEffect, useState } from "react"
-
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 const DeckComponent = ({ deck_id }: { deck_id: string }) => {
 
   const { getDeck, deckLoading } = useDeckStore()
   const [deck, setDeck] = useState<Deck | undefined>()
+  const [cards, setCards] = useState<Card[] | undefined>()
+  const { onQuizOpen, isOpen } = useQuizModalOpen()
+  const { getAllCards, cardLoading } = useCardStore()
 
   const memorizedDeck = useCallback(async () => {
     const newDeck: Deck | undefined = await getDeck(deck_id)
@@ -17,9 +23,17 @@ const DeckComponent = ({ deck_id }: { deck_id: string }) => {
     } else return
   }, [deck_id, getDeck])
 
+  const memorizedCards = useCallback(async() => {
+    const cards : Card[] | undefined = await getAllCards(deck_id)
+    if( cards ) {
+      setCards(cards)
+    } else return
+  }, [deck_id, getAllCards])
+
   useEffect(() => {
     memorizedDeck()
-  }, [memorizedDeck])
+    memorizedCards()
+  }, [memorizedCards, memorizedDeck])
 
   if (deckLoading) {
     return (
@@ -68,8 +82,13 @@ const DeckComponent = ({ deck_id }: { deck_id: string }) => {
               </p>
             </li>
           </ul>
-          <RegularButton text={"Start study"} color="secondary" />
+          <RegularButton 
+          text={"Start study"} 
+          color="secondary" 
+          onClick={onQuizOpen}
+          />
         </div>
+        { isOpen && cards && <QuizPopupModal cards={cards} deckTitle={deck.title}/> }
       </div>
     )
   }
