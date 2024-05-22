@@ -4,7 +4,24 @@ import { Card } from "@/type/Card";
 
 const useCardStore = create<UseCardStoreState>((set) => ({
   cardLoading: false,
-  getAllCards: async (deckId: string) => {},
+  getAllCards: async (deckId: string) => {
+    set({ cardLoading: true });
+    try {
+      const url = `/api/decks/deck/cards?deck_id=${deckId}`
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      const data = await res.json()
+      const cards = data.cards
+      return cards
+      set({ cardLoading: false });
+    } catch(e) {
+
+    }
+  },
   createCard: async (newCard: Card) => {
     set({ cardLoading: true });
     try {
