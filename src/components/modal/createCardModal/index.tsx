@@ -50,7 +50,7 @@ const CreateCardModal = ({ uid }: { uid: string}) => {
             status: MemorizedStatus.NEW,
             repetitions: 0,
             reviewDate: new Date(),
-            interval: 0,
+            interval: 1,
             easinessFactor: 2.5
         })
 

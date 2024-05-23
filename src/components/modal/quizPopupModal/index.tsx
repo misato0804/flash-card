@@ -5,11 +5,29 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextu
 import { Card } from "@/type/Card";
 import { IoBookOutline } from "react-icons/io5";
 import { useState } from "react";
+import useFlashCards from "@/hooks/useFlashCards";
+import useCardStore from "@/store/useCardStore";
 
 const QuizPopupModal = ({ cards, deckTitle }: { cards: Card[], deckTitle: string }) => {
 
   const { onQuizClose, onQuizOpen, isOpen } = useQuizModalOpen()
   const [showTheAnswer, setShowTheAnswer] = useState<boolean>(false)
+  const {reviewCards} = useFlashCards()
+  const {updateCard} = useCardStore()
+  
+  const [currentCardIndex, setCurrentCardIndex] = useState(0)
+
+  const handleCardUpdate = async (confidentLevel: number) => {
+    setShowTheAnswer(false)
+    const currentCard = cards[currentCardIndex]
+    const updatedCard = reviewCards(currentCard, confidentLevel)
+    try {
+      await updateCard(updatedCard)
+      setCurrentCardIndex((currentCardIndex + 1)% cards.length)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <Modal
@@ -28,19 +46,20 @@ const QuizPopupModal = ({ cards, deckTitle }: { cards: Card[], deckTitle: string
                 </ModalHeader>
                 <ModalBody>
                   <div className="flex justify-center front min-h-20 items-center">
-                    {cards[2].front}
+                    {cards[currentCardIndex].front}
                   </div>
                   <hr />
                   <div className="flex justify-center front min-h-20 items-center">
-                    {showTheAnswer && cards[2].back}
+                    {showTheAnswer && cards[currentCardIndex].back}
                   </div>
                   {
                     showTheAnswer &&
                     (
                       <div className="flex gap-6">
-                        <RegularButton text='Exit the quiz' onClick={onQuizClose} />
-                        <RegularButton text='Exit the quiz' onClick={onQuizClose} />
-                        <RegularButton text='Exit the quiz' onClick={onQuizClose} />
+                        <RegularButton text='Again' onClick={() => handleCardUpdate(0)} />
+                        <RegularButton text='Hard' onClick={() => handleCardUpdate(1)} />
+                        <RegularButton text='Good' onClick={() => handleCardUpdate(2)} />
+                        <RegularButton text='Easy' onClick={() => handleCardUpdate(3)} />
                       </div>
                     )
                   }

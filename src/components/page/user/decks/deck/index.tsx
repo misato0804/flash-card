@@ -1,6 +1,7 @@
 'use client'
 import RegularButton from "@/components/button/regularButton"
 import QuizPopupModal from "@/components/modal/quizPopupModal"
+import useFlashCards from "@/hooks/useFlashCards"
 import { useQuizModalOpen } from "@/store/isQuizModalOpen"
 import useCardStore from "@/store/useCardStore"
 import useDeckStore from "@/store/userDeckStore"
@@ -11,10 +12,12 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 const DeckComponent = ({ deck_id }: { deck_id: string }) => {
 
   const { getDeck, deckLoading } = useDeckStore()
-  const [deck, setDeck] = useState<Deck | undefined>()
-  const [cards, setCards] = useState<Card[] | undefined>()
-  const { onQuizOpen, isOpen } = useQuizModalOpen()
+  const { shuffleCards, dueCardFilter} = useFlashCards()
   const { getAllCards, cardLoading } = useCardStore()
+  const { onQuizOpen, isOpen } = useQuizModalOpen()
+
+  const [ deck, setDeck] = useState<Deck | undefined>()
+  const [ cards, setCards] = useState<Card[] | undefined>()
 
   const memorizedDeck = useCallback(async () => {
     const newDeck: Deck | undefined = await getDeck(deck_id)
@@ -26,7 +29,9 @@ const DeckComponent = ({ deck_id }: { deck_id: string }) => {
   const memorizedCards = useCallback(async() => {
     const cards : Card[] | undefined = await getAllCards(deck_id)
     if( cards ) {
-      setCards(cards)
+      const dueCards = dueCardFilter(cards)
+      const shuffledCards = shuffleCards(dueCards)
+      setCards(shuffledCards)
     } else return
   }, [deck_id, getAllCards])
 
