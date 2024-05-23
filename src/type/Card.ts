@@ -1,4 +1,4 @@
-import { CardStatus, MemorizedStatus } from "./CardStatus"
+import { MemorizedStatus } from "./CardStatus"
 
 export type Card = {
   id?: string,

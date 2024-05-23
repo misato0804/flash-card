@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const { newCard } = data;
 
   const collectionRef = collection(database, "cards");
-  const decksRef = doc(database, "decks", "uz0D4ZyLle8pQjYzVD78");
+  const decksRef = doc(database, "decks", newCard.deckId);
 
   try {
     await updateDoc(decksRef, { "cardStatus.New": increment(1) });

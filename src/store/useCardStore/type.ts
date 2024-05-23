@@ -6,5 +6,4 @@ export type UseCardStoreState = {
   createCard: (newCard: Card) => Promise<void>,
   deleteCard: (cardId: string) => Promise<void>,
   updateCard: (newCard: Card) => Promise<void>
-  updateCardStatus: () => Promise<void>
 }
